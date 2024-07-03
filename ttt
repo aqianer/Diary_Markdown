@@ -22,3 +22,69 @@ match args:
         print('clean')
     case _:
         print('invalid command.')
+
+
+#函数的参数
+
+#位置参数
+
+def power(x):
+    return x * x
+
+def power(x, n):
+    s = 1
+    while n > 0:
+        n = n - 1
+        s = s * x
+    return s
+
+#默认参数
+
+def power(x, n=2):
+    s = 1
+    while n > 0:
+        n = n - 1
+        s = s * x
+    return s
+
+def enroll(name, gender, age=6, city='Beijing'):
+    print('name:', name)
+    print('gender:', gender)
+    print('age:', age)
+    print('city:', city)
+
+def add_end(L=[]):
+    L.append('END')
+    return L
+
+def add_end(L=None):
+    if L is None:
+        L = []
+    L.append('END')
+    return L
+
+
+#可变参数
+
+def calc(*numbers):
+    sum = 0
+    for n in numbers:
+        sum = sum + n * n
+    return sum
+
+>>> calc(1, 2)
+5
+>>> calc()
+0
+
+>>> nums = [1, 2, 3]
+>>> calc(*nums)
+14
+
+*nums表示把nums这个list的所有元素作为可变参数传进去。这种写法相当有用，而且很常见。
+
+
+
+#关键字参数
+
+
