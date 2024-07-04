@@ -66,7 +66,7 @@ while n<=100:
     if n%2==0:
         n=n+1
         continue
-	print(n)
+    print(n)
     n=n+1
 print('END')
 ```
