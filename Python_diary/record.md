@@ -1119,6 +1119,117 @@ else:
 所以，如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：generator。
 
 > 也就是说可以通过先定义一个生成器(其实就是个算法)通过循环得到一定规律的数组
+
+要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator：
+
+>>> L = [x * x for x in range(10)]
+>>> L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> g = (x * x for x in range(10))
+>>> g
+<generator object <genexpr> at 0x1022ef630>
+创建L和g的区别仅在于最外层的[]和()，L是一个list，而g是一个generator。
+
+我们可以直接打印出list的每一个元素，但我们怎么打印出generator的每一个元素呢？
+
+如果要一个一个打印出来，可以通过next()函数获得generator的下一个返回值：
+
+>>> next(g)
+0
+>>> next(g)
+1
+>>> next(g)
+4
+>>> next(g)
+9
+>>> next(g)
+16
+>>> next(g)
+25
+>>> next(g)
+36
+>>> next(g)
+49
+>>> next(g)
+64
+>>> next(g)
+81
+>>> next(g)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+我们讲过，generator保存的是算法，每次调用next(g)，就计算出g的下一个元素的值，直到计算到最后一个元素，没有更多的元素时，抛出StopIteration的错误。
+
+当然，上面这种不断调用next(g)实在是太变态了，正确的方法是使用for循环，因为generator也是可迭代对象：
+
+>>> g = (x * x for x in range(10))
+>>> for n in g:
+...     print(n)
+... 
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+所以，我们创建了一个generator后，基本上永远不会调用next()，而是通过for循环来迭代它，并且不需要关心StopIteration的错误。
+
+generator非常强大。如果推算的算法比较复杂，用类似列表生成式的for循环无法实现的时候，还可以用函数来实现。
+
+比如，著名的斐波拉契数列（Fibonacci），除第一个和第二个数外，任意一个数都可由前两个数相加得到：
+
+1, 1, 2, 3, 5, 8, 13, 21, 34, ...
+
+斐波拉契数列用列表生成式写不出来，但是，用函数把它打印出来却很容易：
+
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        print(b)
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+注意，赋值语句：
+
+a, b = b, a + b
+相当于：
+
+t = (b, a + b) # t是一个tuple
+a = t[0]
+b = t[1]
+但不必显式写出临时变量t就可以赋值。
+
+上面的函数可以输出斐波那契数列的前N个数：
+
+>>> fib(6)
+1
+1
+2
+3
+5
+8
+'done'
+仔细观察，可以看出，fib函数实际上是定义了斐波拉契数列的推算规则，可以从第一个元素开始，推算出后续任意的元素，这种逻辑其实非常类似generator。
+
+也就是说，上面的函数和generator仅一步之遥。要把fib函数变成generator函数，只需要把print(b)改为yield b就可以了：
+
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+这就是定义generator的另一种方法。如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator函数，调用一个generator函数将返回一个generator：
+
+>>> f = fib(6)
+>>> f
+<generator object fib at 0x104feaaa0>
+
 ```
 def odd():
     print('step 1')
