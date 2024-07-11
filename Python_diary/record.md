@@ -1,8 +1,10 @@
 https://github.com/vipstone/python/blob/master/%E5%9F%BA%E7%A1%80.md
 
-docker exec -it 0dc0197efb96 /bin/bash -l
-docker ps -a
-kubectl get pod -A|grep acc
+https://github.com/selfteaching/the-craft-of-selfteaching/issues/67
+
+> docker exec -it 0dc0197efb96 /bin/bash -l
+> docker ps -a
+> kubectl get pod -A|grep acc
 
 
 ## 循环
