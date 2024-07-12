@@ -2,6 +2,8 @@ https://github.com/vipstone/python/blob/master/%E5%9F%BA%E7%A1%80.md
 
 https://github.com/selfteaching/the-craft-of-selfteaching/issues/67
 
+微服务组件之注册中心技术选型 https://www.cnblogs.com/cicada-smile/p/13138262.html
+
 > docker exec -it 0dc0197efb96 /bin/bash -l
 
 
