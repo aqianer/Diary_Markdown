@@ -1,4 +1,57 @@
-![image-20240716155407372](../AppData/Roaming/Typora/typora-user-images/image-20240716155407372.png)
+https://kubernetes.io/zh-cn/docs/tutorials/hello-minikube/
+https://kubernetes.io/zh-cn/docs/tutorials/kubernetes-basics/deploy-app/deploy-intro/
+
+常用Docker命令
+在安装Docker的linux环境中，推荐直接使用docker命令
+
+制作build
+根据项目生成的app.jar, Dockerfile等资源文件，并复制到同一个文件夹FilePath中，使用如下命令生成镜像
+
+docker build -t ImageBasePath/ImageName:ImageVersion FilePath
+
+查看images
+使用如下命令可以查看本地镜像仓库中存储的镜像，包括刚制作好的镜像
+
+docker images 
+
+查看运行的容器
+docker ps -a 
+
+登录
+登录远程镜像仓库，获取下载和推送的权限
+
+docker login -u UserName -p PASSWPRD ImageRepoURL 
+
+推送push
+使用如下命令可以将镜像push到远程镜像仓库中，设置权限的远程镜像仓库需要首先登录
+
+docker push ImageBasePath/ImageName:ImageVersion 
+
+保存save
+使用如何命令可以将本地镜像仓库的镜像制作成tar文件
+
+docker save -o ImageName-ImageVersion.tar ImageBasePath/ImageName:ImageVersion 
+
+docker save alpine | gzip > alpine-latest.tar.gz
+
+加载load
+docker load -i ImageName-ImageVersion.tar
+
+或者加载基础镜像
+
+docker import ImageName.tar.gz  imageName:tag 
+
+拉取pull
+可以使用如下命令从远程镜像仓库中拉取镜像到本地仓库
+
+docker pull ImageBasePath/ImageName:ImageVersion 
+
+命名tag
+可以使用如下命令将镜像重命名
+
+docker tag ImageBasePath/ImageName:ImageVersion NewImageBasePath/NewImageName:NewImageVersion 
+
+![image-20240716155407372](http://image.huawei.com/tiny-lts/v1/images/54dcfb3ae58ad62c0a068b028262bed2_669x473.png@900-0-90-f.png)
 
 
 
