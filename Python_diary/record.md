@@ -1,3 +1,9 @@
+![image-20240716155407372](../AppData/Roaming/Typora/typora-user-images/image-20240716155407372.png)
+
+
+
+
+
 信息技术的特征（普传功夫真驾驶）
 
 五次信息技术革命
