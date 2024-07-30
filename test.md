@@ -18,6 +18,8 @@ Todo:
 Api
 
 
+> 练习 简单B2C交易 1. SchemaAPI接入 2. 需要交易双方需要手工创建, Customer, org, orgOperator(创建组织操作员以后需要修改Pin来激活，使用USSD Menu修改，短息通知获取临时密码然后修改PIN) 3. 需要新增ReasonType, Service, Product 交易成功，失败需要发送短息通知 交易金额需要支持小数 交易组织Amount -> Customer Amount 需要收手续费1 (Charge) 需要限制交易最小金额为5 (limit) 4. AG模板限制， AG模板需要手工配置 组织操作员
+
 开发流程：
 1、参与se评审规格，提出疑问，同步准备环境，fork代码仓库，se分解需求
 2、书写story，story写出开发实现方案，书写ST用例，评审story和用例，发评审结论邮件，并上传到d-box，上ewindcloud领取story，并启动，同时将st用例上传到ewindcloud
